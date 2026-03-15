@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- Lab 01: HTML structure -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories | RECIPEZ</title>
+  <!-- Lab 02: External CSS -->
+  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Lab 01: Navigation with ul li a -->
+<nav class="navbar">
+  <a class="nav-logo" href="index.html">RECIPE<span>Z</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="categories.html" class="active">Categories</a></li>
+    <li><a href="popular.html">Popular</a></li>
+    <li><a href="#" onclick="openSearch(); return false;">🔍 Search</a></li>
+    <li><a href="add-recipe.html" class="btn-add">✍️ Add Recipe</a></li>
+    <li><a href="login.html" class="btn-login">👤 Login</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="section" style="padding-bottom:20px; background:linear-gradient(135deg,#1a2e1a,#2e7d32); text-align:center;">
+  <!-- Lab 02: Inline CSS -->
+  <h1 style="font-family:'Playfair Display',serif; font-size:48px; color:#fff; margin-bottom:12px;">Browse Categories</h1>
+  <p style="color:#d4efd4; font-size:18px;">Choose a category to explore 10 delicious recipes each</p>
+</section>
+
+<!-- 10 CATEGORY CARDS - 4 per row (Lab 01: hyperlinks) -->
+<section class="section">
+  <div class="cat-grid">
+
+    <a class="cat-card" href="category.html?cat=Breakfast"
+       style="background:linear-gradient(135deg,#e65100,#ff8f00);">
+      <span class="cat-icon">🥞</span>Breakfast
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Lunch"
+       style="background:linear-gradient(135deg,#2e7d32,#43a047);">
+      <span class="cat-icon">🥗</span>Lunch
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Dinner"
+       style="background:linear-gradient(135deg,#1565c0,#1976d2);">
+      <span class="cat-icon">🍽️</span>Dinner
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Desserts"
+       style="background:linear-gradient(135deg,#ad1457,#e91e63);">
+      <span class="cat-icon">🍰</span>Desserts
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Drinks"
+       style="background:linear-gradient(135deg,#00838f,#00acc1);">
+      <span class="cat-icon">🥤</span>Drinks
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Appetizers"
+       style="background:linear-gradient(135deg,#558b2f,#7cb342);">
+      <span class="cat-icon">🥙</span>Appetizers
+    </a>
+
+    <a class="cat-card" href="category.html?cat=BBQ"
+       style="background:linear-gradient(135deg,#bf360c,#e64a19);">
+      <span class="cat-icon">🔥</span>BBQ
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Quick%20%26%20Easy"
+       style="background:linear-gradient(135deg,#f57f17,#f9a825);">
+      <span class="cat-icon">⚡</span>Quick &amp; Easy
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Side%20Dish"
+       style="background:linear-gradient(135deg,#4a148c,#7b1fa2);">
+      <span class="cat-icon">🥦</span>Side Dish
+    </a>
+
+    <a class="cat-card" href="category.html?cat=Shortiest"
+       style="background:linear-gradient(135deg,#006064,#00838f);">
+      <span class="cat-icon">⏱️</span>Shortiest
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong style="color:#fff;">RECIPE<span style="color:#f9a825;">Z</span></strong> — Community Recipe Sharing Platform</p>
+  <p style="margin-top:8px;">
+    <a href="index.html">Home</a> &nbsp;|&nbsp;
+    <a href="popular.html">Popular</a> &nbsp;|&nbsp;
+    <a href="add-recipe.html">Add Recipe</a>
+  </p>
+  <p class="footer-credits">
+    ICT 2204 – Web Technologies &nbsp;|&nbsp; Rajarata University of Sri Lanka<br>
+    ICT/2023/047 &amp; ICT/2023/008
+  </p>
+</footer>
+
+<button id="backToTop" title="Back to Top">↑</button>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <h3 style="margin-bottom:16px;color:#1b5e20;font-family:'Playfair Display',serif;">🔍 Search Recipes</h3>
+    <input type="text" id="searchInput" placeholder="Search by name or category..." oninput="doSearch()">
+    <ul class="search-results-list" id="searchResultsList">
+      <li style="color:#aaa;padding:12px">Type to search recipes...</li>
+    </ul>
+    <button class="btn btn-primary" onclick="closeSearch()" style="margin-top:12px;width:100%;">Close</button>
+  </div>
+</div>
+
+<script src="js/main.js?v=10"></script>
+</body>
+</html>

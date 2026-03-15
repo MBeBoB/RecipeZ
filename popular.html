@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popular Recipes | RECIPEZ</title>
+  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-logo" href="index.html">RECIPE<span>Z</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="categories.html">Categories</a></li>
+    <li><a href="popular.html" class="active">Popular</a></li>
+    <li><a href="#" onclick="openSearch(); return false;">🔍 Search</a></li>
+    <li><a href="add-recipe.html" class="btn-add">✍️ Add Recipe</a></li>
+    <li><a href="login.html" class="btn-login">👤 Login</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="section" style="padding-bottom:20px; background:linear-gradient(135deg,#1a2e1a,#bf360c); text-align:center;">
+  <h1 style="font-family:'Playfair Display',serif; font-size:48px; color:#fff; margin-bottom:12px;">🔥 Popular Recipes</h1>
+  <p style="color:#ffccbc; font-size:18px;">The most-viewed recipes loved by our community</p>
+</section>
+
+<!-- FILTER BUTTONS (Lab 04: if-else for filtering, Project: Dynamic Content) -->
+<section class="section" style="padding-bottom:0; text-align:center;">
+  <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:24px;">
+    <!-- Lab 03: onclick event handling -->
+    <button class="btn btn-primary" onclick="filterPopular('all')" id="filterAll">All</button>
+    <button class="btn btn-outline" onclick="filterPopular('Breakfast')" id="filterBreakfast" style="color:#1b5e20; border-color:#2e7d32;">Breakfast</button>
+    <button class="btn btn-outline" onclick="filterPopular('Lunch')" id="filterLunch" style="color:#1b5e20; border-color:#2e7d32;">Lunch</button>
+    <button class="btn btn-outline" onclick="filterPopular('Dinner')" id="filterDinner" style="color:#1b5e20; border-color:#2e7d32;">Dinner</button>
+    <button class="btn btn-outline" onclick="filterPopular('Desserts')" id="filterDesserts" style="color:#1b5e20; border-color:#2e7d32;">Desserts</button>
+  </div>
+</section>
+
+<!-- POPULAR RECIPES GRID (Lab 05: for loop, Lab 06: array sort) -->
+<section class="section section-alt">
+  <div class="recipes-grid" id="popularRecipes">
+    <p style="color:#888; grid-column:1/-1; text-align:center; padding:40px;">Loading...</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong style="color:#fff;">RECIPE<span style="color:#f9a825;">Z</span></strong> — Community Recipe Sharing Platform</p>
+  <p style="margin-top:8px;"><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="categories.html">Categories</a> &nbsp;|&nbsp; <a href="add-recipe.html">Add Recipe</a></p>
+  <p class="footer-credits">ICT 2204 – Web Technologies &nbsp;|&nbsp; Rajarata University of Sri Lanka<br>ICT/2023/047 &amp; ICT/2023/008</p>
+</footer>
+
+<button id="backToTop" title="Back to Top">↑</button>
+
+<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <h3 style="margin-bottom:16px;color:#1b5e20;font-family:'Playfair Display',serif;">🔍 Search Recipes</h3>
+    <input type="text" id="searchInput" placeholder="Search recipes..." oninput="doSearch()">
+    <ul class="search-results-list" id="searchResultsList"><li style="color:#aaa;padding:12px">Type to search...</li></ul>
+    <button class="btn btn-primary" onclick="closeSearch()" style="margin-top:12px;width:100%;">Close</button>
+  </div>
+</div>
+
+<script src="js/main.js?v=10"></script>
+<script>
+  /* Lab 04: if-else filter function, Lab 06: array filter */
+  function filterPopular(cat) {
+    let list;
+    // Lab 04: if-else-if ladder
+    if (cat === 'all') {
+      list = getPopular();
+    } else {
+      list = getPopular().filter(r => r.category === cat); // Lab 06: array filter
+    }
+    renderCards(list, "popularRecipes", true);
+
+    // Reset button styles (Lab 05: for loop)
+    const btns = document.querySelectorAll('[id^="filter"]');
+    for (let i = 0; i < btns.length; i++) { // Lab 05: for loop
+      btns[i].className = 'btn btn-outline';
+      btns[i].style.color = '#1b5e20';
+      btns[i].style.borderColor = '#2e7d32';
+    }
+    const active = document.getElementById('filter' + (cat === 'all' ? 'All' : cat));
+    if (active) { active.className = 'btn btn-primary'; active.style.color=''; active.style.borderColor=''; }
+  }
+</script>
+</body>
+</html>

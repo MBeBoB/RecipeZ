@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!-- Lab 01: HTML file structure -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Lab 01: title tag -->
+  <title>RECIPEZ – Home</title>
+  <!-- Lab 02: External CSS (Step 3) -->
+  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Lab 01: Hyperlinks, Lab 01: Unordered List for nav -->
+<nav class="navbar">
+  <a class="nav-logo" href="index.html">RECIPE<span>Z</span></a>
+  <!-- Lab 01: Unordered List <ul><li> -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="categories.html">Categories</a></li>
+    <li><a href="popular.html">Popular</a></li>
+    <!-- Lab 03: onclick event -->
+    <li><a href="#" onclick="openSearch(); return false;">🔍 Search</a></li>
+    <li><a href="add-recipe.html" class="btn-add">✍️ Add Recipe</a></li>
+    <li><a href="login.html" class="btn-login">👤 Login</a></li>
+  </ul>
+  <!-- Lab 03: onclick DOM event -->
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- HERO SLIDER (Lab 05: for loop auto-play, Lab 03: DOM) -->
+<section class="hero">
+  <div id="heroSlider"></div>
+  <!-- Lab 03: onclick event handling -->
+  <button class="slider-arrow slider-prev" onclick="goToSlide(currentSlide - 1)">&#8592;</button>
+  <button class="slider-arrow slider-next" onclick="goToSlide(currentSlide + 1)">&#8594;</button>
+  <div class="slider-controls" id="sliderDots"></div>
+</section>
+
+<!-- QUICK ACTION CARDS (Lab 01: HTML structure) -->
+<section class="section" style="padding-bottom: 0;">
+  <!-- Lab 02: Inline CSS (Step 1) - directly on element -->
+  <h2 class="section-title" style="color: #1b5e20; font-size: 36px;">What would you like to do?</h2>
+  <div class="divider"></div>
+  <div class="quick-cards">
+    <!-- Lab 01: Hyperlinks <a> -->
+    <a class="q-card" href="categories.html">
+      <div class="icon">🍽️</div>
+      <h3>Browse Recipes</h3>
+      <p>Explore all categories and find your next meal idea</p>
+    </a>
+    <a class="q-card" href="popular.html">
+      <div class="icon">🔥</div>
+      <h3>Popular Now</h3>
+      <p>See the most-viewed recipes loved by the community</p>
+    </a>
+    <a class="q-card" href="add-recipe.html">
+      <div class="icon">✍️</div>
+      <h3>Add a Recipe</h3>
+      <p>Share your favourite dish with our growing community</p>
+    </a>
+  </div>
+</section>
+
+<!-- LATEST RECIPES (Lab 06: array rendered by JS) -->
+<section class="section section-alt">
+  <!-- Lab 02: Embedded CSS shown in <style> below -->
+  <h2 class="section-title">Latest Recipes</h2>
+  <p class="section-sub">Fresh additions to the RECIPEZ collection</p>
+  <div class="divider"></div>
+  <!-- Rendered by JS (Lab 03: DOM, Lab 05: for loop) -->
+  <div class="recipes-grid" id="latestRecipes"></div>
+</section>
+
+<!-- STATS SECTION (Lab 04: JS operators used in JS) -->
+<section class="section">
+  <h2 class="section-title">By the Numbers</h2>
+  <div class="divider"></div>
+  <!-- Lab 02: Inline CSS on <p> elements (Lab 02 Step 1) -->
+  <div style="display:flex; gap:32px; justify-content:center; flex-wrap:wrap; text-align:center;">
+    <div style="padding: 24px 40px; background:#fff; border-radius:14px; border:2px solid #c8e6c9; box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+      <p style="font-size: 48px; font-weight:900; color:#2e7d32;">100+</p>
+      <p style="color:#5a7a5a; font-size:15px;">Recipes</p>
+    </div>
+    <div style="padding: 24px 40px; background:#fff; border-radius:14px; border:2px solid #c8e6c9; box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+      <p style="font-size: 48px; font-weight:900; color:#2e7d32;">10</p>
+      <p style="color:#5a7a5a; font-size:15px;">Categories</p>
+    </div>
+    <div style="padding: 24px 40px; background:#fff; border-radius:14px; border:2px solid #c8e6c9; box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+      <p style="font-size: 48px; font-weight:900; color:#2e7d32;">10K+</p>
+      <p style="color:#5a7a5a; font-size:15px;">Community Views</p>
+    </div>
+    <div style="padding: 24px 40px; background:#fff; border-radius:14px; border:2px solid #c8e6c9; box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+      <p style="font-size: 48px; font-weight:900; color:#2e7d32;">100%</p>
+      <p style="color:#5a7a5a; font-size:15px;">Free to Use</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (Lab 01: HTML structure) -->
+<footer>
+  <p><strong style="color:#fff;">RECIPE<span style="color:#f9a825;">Z</span></strong> — Community Recipe Sharing Platform</p>
+  <p style="margin-top:8px;">
+    <a href="categories.html">Categories</a> &nbsp;|&nbsp;
+    <a href="popular.html">Popular</a> &nbsp;|&nbsp;
+    <a href="add-recipe.html">Add Recipe</a> &nbsp;|&nbsp;
+    <a href="login.html">Login</a>
+  </p>
+  <p class="footer-credits">
+    ICT 2204 – Web Technologies &nbsp;|&nbsp; Rajarata University of Sri Lanka<br>
+    ICT/2023/047 &amp; ICT/2023/008
+  </p>
+</footer>
+
+<!-- BACK TO TOP (Project: Smooth Scrolling) -->
+<button id="backToTop" title="Back to Top">↑</button>
+
+<!-- SEARCH OVERLAY (Project: Dynamic Content Update) -->
+<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <h3 style="margin-bottom:16px; color:#1b5e20; font-family:'Playfair Display',serif;">🔍 Search Recipes</h3>
+    <!-- Lab 03: oninput event, Lab 04: if statement in doSearch() -->
+    <input type="text" id="searchInput" placeholder="Search by name or category..." oninput="doSearch()">
+    <!-- Lab 01: Unordered list for results -->
+    <ul class="search-results-list" id="searchResultsList">
+      <li style="color:#aaa;padding:12px">Type to search recipes...</li>
+    </ul>
+    <button class="btn btn-primary" onclick="closeSearch()" style="margin-top:12px;width:100%;">Close</button>
+  </div>
+</div>
+
+<!-- Lab 02: External CSS linked above, Lab 03: External JS -->
+<script src="js/main.js?v=10"></script>
+</body>
+</html>
