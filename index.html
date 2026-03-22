@@ -7,7 +7,7 @@
   <!-- Lab 01: title tag -->
   <title>RECIPEZ – Home</title>
   <!-- Lab 02: External CSS (Step 3) -->
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="stylesheet" href="css/styles.css?v=11">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -65,7 +65,6 @@
 
 <!-- LATEST RECIPES (Lab 06: array rendered by JS) -->
 <section class="section section-alt">
-  <!-- Lab 02: Embedded CSS shown in <style> below -->
   <h2 class="section-title">Latest Recipes</h2>
   <p class="section-sub">Fresh additions to the RECIPEZ collection</p>
   <div class="divider"></div>
@@ -130,7 +129,71 @@
   </div>
 </div>
 
-<!-- Lab 02: External CSS linked above, Lab 03: External JS -->
-<script src="js/main.js?v=10"></script>
+<!-- api.js MUST come before main.js so search + slider use the database -->
+<script src="js/api.js?v=11"></script>
+<script src="js/main.js?v=11"></script>
+<script>
+// ── Database-powered hero slider ──────────────────────────────
+// Uses window.load so it runs AFTER main.js has fully finished
+window.addEventListener("load", async () => {
+  const hero = document.getElementById("heroSlider");
+  if (!hero) return;
+
+  // Fetch top 8 most viewed recipes from database
+  const latest = await apiFetchPopular(8);
+  if (!latest || !latest.length) return;
+
+  // Clear whatever main.js built and rebuild from database
+  hero.innerHTML = "";
+
+  const grads = [
+    "linear-gradient(135deg,#1b5e20,#2e7d32)",
+    "linear-gradient(135deg,#b71c1c,#c62828)",
+    "linear-gradient(135deg,#0d47a1,#1565c0)",
+    "linear-gradient(135deg,#880e4f,#ad1457)",
+    "linear-gradient(135deg,#4a148c,#6a1b9a)",
+    "linear-gradient(135deg,#004d40,#00695c)",
+    "linear-gradient(135deg,#e65100,#ef6c00)",
+    "linear-gradient(135deg,#37474f,#546e7a)"
+  ];
+
+  latest.forEach((r, i) => {
+    const div = document.createElement("div");
+    div.className = "slide" + (i === 0 ? " active" : "");
+    div.style.background = grads[i % grads.length];
+
+    if (r.image_url) {
+      const bg = new Image();
+      bg.onload = () => {
+        div.style.backgroundImage = "linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.55)),url('" + r.image_url + "')";
+        div.style.backgroundSize = "cover";
+        div.style.backgroundPosition = "center";
+      };
+      bg.src = r.image_url;
+    }
+
+    div.innerHTML = `<div class="slide-content">
+      <div style="font-size:64px;margin-bottom:8px;line-height:1;">${r.emoji}</div>
+      <h1>${r.name}</h1>
+      <p>${r.category} &nbsp;·&nbsp; ⏱ ${r.cook_time} &nbsp;·&nbsp; 👁 ${r.views} views</p>
+      <a href="categories.html" class="btn btn-outline">Browse All</a>
+    </div>`;
+    hero.appendChild(div);
+  });
+
+  // Reset slide counter and rebuild dots
+  currentSlide = 0;
+  const dotsWrap = document.getElementById("sliderDots");
+  if (dotsWrap) {
+    dotsWrap.innerHTML = "";
+    latest.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.onclick = () => goToSlide(i);
+      dotsWrap.appendChild(dot);
+    });
+  }
+});
+</script>
 </body>
 </html>
