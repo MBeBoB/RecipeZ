@@ -23,6 +23,7 @@
     <!-- Lab 03: onclick event -->
     <li><a href="#" onclick="openSearch(); return false;">🔍 Search</a></li>
     <li><a href="add-recipe.html" class="btn-add">✍️ Add Recipe</a></li>
+    <li><a href="contact.html">📬 Contact</a></li>
     <li><a href="login.html" class="btn-login">👤 Login</a></li>
   </ul>
   <!-- Lab 03: onclick DOM event -->
@@ -104,6 +105,7 @@
     <a href="categories.html">Categories</a> &nbsp;|&nbsp;
     <a href="popular.html">Popular</a> &nbsp;|&nbsp;
     <a href="add-recipe.html">Add Recipe</a> &nbsp;|&nbsp;
+    <a href="contact.html">Contact</a> &nbsp;|&nbsp;
     <a href="login.html">Login</a>
   </p>
   <p class="footer-credits">
@@ -176,6 +178,7 @@ window.addEventListener("load", async () => {
       <div style="font-size:64px;margin-bottom:8px;line-height:1;">${r.emoji}</div>
       <h1>${r.name}</h1>
       <p>${r.category} &nbsp;·&nbsp; ⏱ ${r.cook_time} &nbsp;·&nbsp; 👁 ${r.views} views</p>
+      <a href="recipe.html?id=${r.id}" class="btn btn-primary" style="margin-right:12px;">View Recipe</a>
       <a href="categories.html" class="btn btn-outline">Browse All</a>
     </div>`;
     hero.appendChild(div);
